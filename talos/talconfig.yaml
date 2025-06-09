@@ -21,8 +21,7 @@ cniConfig:
 nodes:
   - hostname: "rpi4-talos-0"
     ipAddress: "192.168.50.113"
-    installDiskSelector:
-      serial: "mmcblk0"
+    installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/04d4078b3c5d84c71491d9d7acfb48423098225eb2037448a56c0da12cf379a6

@@ -24,7 +24,7 @@ nodes:
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/04d4078b3c5d84c71491d9d7acfb48423098225eb2037448a56c0da12cf379a6
+    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -32,6 +32,25 @@ nodes:
         dhcp: false
         addresses:
           - "192.168.50.113/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.50.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.50.10"
+  - hostname: "inuc-talos-1"
+    ipAddress: "192.168.50.151"
+    installDisk: "/dev/nvme0n1"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/bf2113e1bea48d566f7d1e08eb780f832ccb56bbd7cf2f95769f7a04f9f2b184
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "1c:69:7a:af:29:a5"
+        dhcp: false
+        addresses:
+          - "192.168.50.151/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.50.1"

@@ -62,8 +62,8 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-    volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: home-assistant-config
-        path: /config
+    persistence:
+      config:
+        globalMounts:
+          - path: /config
+        existingClaim: home-assistant-config

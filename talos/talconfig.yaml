@@ -57,6 +57,25 @@ nodes:
         mtu: 1500
         vip:
           ip: "192.168.50.10"
+  - hostname: "mac-talos-2"
+    ipAddress: "192.168.50.181"
+    installDisk: "/dev/sdc"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/bf2113e1bea48d566f7d1e08eb780f832ccb56bbd7cf2f95769f7a04f9f2b184
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "ac:87:a3:29:2d:57"
+        dhcp: false
+        addresses:
+          - "192.168.50.181/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.50.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.50.10"
 
 # Global patches
 patches:

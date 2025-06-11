@@ -62,8 +62,3 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-    persistence:
-      config:
-        existingClaim: home-assistant-config
-        globalMounts:
-          - path: /config

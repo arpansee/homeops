@@ -66,6 +66,4 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: home-assistant-config
-      - name: media
-        persistentVolumeClaim:
-          claimName: home-assistant-media
+        path: /config

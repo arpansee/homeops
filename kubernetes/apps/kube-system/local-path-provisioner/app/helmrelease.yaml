@@ -14,6 +14,7 @@ spec:
         kind: HelmRepository
         namespace: flux-system
   values:
+    fullnameOverride: local-path-provisioner
     csiDriver:
       name: "org.democratic-csi.local-hostpath"
       attachRequired: false

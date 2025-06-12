@@ -11,6 +11,9 @@ spec:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/kube-system/local-path-provisioner/app
   prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
   wait: false
   interval: 30m
   retryInterval: 1m

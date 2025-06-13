@@ -66,8 +66,7 @@ spec:
           http:
             port: &port 8123
       code:
-        type: ClusterIP
-        controller: main
+        controller: hass-code-server
         ports:
           http:
             port: 8081

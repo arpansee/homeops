@@ -21,6 +21,9 @@ spec:
       home-assistant:
         annotations:
           reloader.stakater.com/auto: "true"
+      hass-code-server:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:

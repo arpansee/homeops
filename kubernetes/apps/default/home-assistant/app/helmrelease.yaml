@@ -21,9 +21,6 @@ spec:
       home-assistant:
         annotations:
           reloader.stakater.com/auto: "true"
-      hass-code-server:
-        annotations:
-          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -69,7 +66,7 @@ spec:
           http:
             port: &port 8123
       code:
-        controller: hass-code-server
+        controller: home-assistant
         ports:
           http:
             port: 8081

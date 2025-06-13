@@ -82,17 +82,6 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-      code:
-        hostnames:
-          - "code.rupamarpan.com"
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: code
-                port: 8081
     persistence:
       config:
         existingClaim: home-assistant

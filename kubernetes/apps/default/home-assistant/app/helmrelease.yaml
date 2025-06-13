@@ -28,6 +28,8 @@ spec:
               tag: 2025.5.3
             env:
               TZ: Pacific/Auckland
+              HASS_HTTP_TRUSTED_PROXIES_1: 192.168.50.1/24
+              HASS_HTTP_TRUSTED_PROXIES_2: 10.42.0.0/16
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true

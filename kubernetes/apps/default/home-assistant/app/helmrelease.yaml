@@ -64,6 +64,14 @@ spec:
         ports:
           http:
             port: &port 8123
+      applb:
+        type: LoadBalancer
+        annotations:
+          ipam.cilium.io/ips: "192.168.50.222"
+        ports:
+          http:
+            port: 8122
+            targetPort: *port
     route:
       app:
         hostnames:

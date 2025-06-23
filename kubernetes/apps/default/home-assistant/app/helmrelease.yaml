@@ -84,6 +84,17 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+      applb:
+        hostnames:
+          - "internalhass.rupamarpan.com"
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: applb
+                port: 8122
     persistence:
       config:
         existingClaim: home-assistant

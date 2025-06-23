@@ -91,6 +91,8 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
+              - identifier: applb
+                port: 8123
       code:
         hostnames:
           - "code.rupamarpan.com"

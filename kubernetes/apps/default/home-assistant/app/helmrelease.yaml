@@ -71,19 +71,6 @@ spec:
         ports:
           http:
             port: 8081
-    ingress:
-      app:
-        enabled: true
-        className: internal
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.rupamarpan.com"
-        hosts:
-          - host: "hass.rupamarpan.com"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: *port
     route:
       app:
         hostnames:

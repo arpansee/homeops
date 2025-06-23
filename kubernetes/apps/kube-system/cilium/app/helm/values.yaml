@@ -38,6 +38,7 @@ l2announcements:
 loadBalancer:
   algorithm: maglev
   mode: "dsr"
+loadbalancer-l7: envoy
 localRedirectPolicy: true
 operator:
   dashboards:

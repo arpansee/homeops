@@ -71,6 +71,19 @@ spec:
         ports:
           http:
             port: 8081
+    ingress:
+      app:
+        enabled: true
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+        hosts:
+          - host: "music-assistant.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: *Port
     route:
       app:
         hostnames:

@@ -78,7 +78,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         hosts:
-          - host: "home-assistant.${SECRET_DOMAIN}"
+          - host: "hass.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:

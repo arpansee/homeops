@@ -65,7 +65,6 @@ spec:
           http:
             port: &port 8123
       code:
-        type: ClusterIP
         ports:
           http:
             port: 8081

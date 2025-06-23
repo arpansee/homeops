@@ -64,6 +64,7 @@ spec:
         ports:
           http:
             port: &port 8123
+
       code:
         ports:
           http:
@@ -76,6 +77,10 @@ spec:
           - name: external
             namespace: kube-system
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
     persistence:
       config:
         existingClaim: home-assistant

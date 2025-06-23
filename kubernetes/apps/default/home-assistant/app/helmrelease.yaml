@@ -72,6 +72,11 @@ spec:
           http:
             port: 8122
             targetPort: *port
+      code:
+        ports:
+          http:
+            port: 8081
+            targetPort: 8081
     route:
       app:
         hostnames:

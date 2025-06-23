@@ -77,13 +77,6 @@ spec:
           - name: external
             namespace: kube-system
             sectionName: https
-      code:
-        hostnames:
-          - "code.rupamarpan.com"
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
     persistence:
       config:
         existingClaim: home-assistant

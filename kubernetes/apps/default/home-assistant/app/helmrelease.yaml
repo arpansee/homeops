@@ -90,7 +90,7 @@ spec:
         hostnames:
           - "code.rupamarpan.com"
         parentRefs:
-          - name: internal
+          - name: external
             namespace: kube-system
             sectionName: https
         rules:

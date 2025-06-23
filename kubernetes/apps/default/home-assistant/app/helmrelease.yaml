@@ -81,3 +81,14 @@ spec:
         existingClaim: home-assistant
         globalMounts:
           - path: /config
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          home-assistant:
+            app:
+              - path: /config/logs
+                subPath: logs
+              - path: /config/tts
+                subPath: tts
+              - path: /tmp
+                subPath: tmp

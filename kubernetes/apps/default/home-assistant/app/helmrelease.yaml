@@ -61,7 +61,6 @@ spec:
               - --port
               - "8081"
               - "/config"
-    hostnetwork: true
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -74,14 +73,6 @@ spec:
         ports:
           http:
             port: &port 8123
-      applb:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: "192.168.50.222"
-        ports:
-          http:
-            port: 8122
-            targetPort: *port
       code:
         ports:
           http:
@@ -99,17 +90,6 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-      applb:
-        hostnames:
-          - "internalhass.rupamarpan.com"
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: applb
-                port: 8122
     persistence:
       config:
         existingClaim: home-assistant

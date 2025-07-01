@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/home-assistant
-              tag: 2025.6.3
+              tag: 2025.6.1
             env:
               TZ: Pacific/Auckland
             securityContext:
@@ -50,7 +50,7 @@ spec:
             dependsOn: app
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.101.2
+              tag: 4.101.1
             args:
               - --auth
               - "none"
@@ -61,8 +61,6 @@ spec:
               - --port
               - "8081"
               - "/config"
-            env:
-              HASS_SERVER: http://localhost:8123
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -89,19 +87,6 @@ spec:
             namespace: kube-system
             sectionName: https
         rules:
-          - matches:
-              - path:
-                  type: PathPrefix
-                  value: /code/
-            filters:
-              - type: URLRewrite
-                urlRewrite:
-                  path:
-                    type: ReplacePrefixMatch
-                    replacePrefixMatch: /
-            backendRefs:
-              - identifier: code
-                port: 8081
           - backendRefs:
               - identifier: app
                 port: *port

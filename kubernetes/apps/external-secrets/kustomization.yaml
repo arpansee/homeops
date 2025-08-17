@@ -7,4 +7,4 @@ resources:
   - ./external-secrets/ks.yaml
   - ./onepassword-connect/ks.yaml
 components:
-  - ../../components/namespace
+  - ../../components/common/namespace

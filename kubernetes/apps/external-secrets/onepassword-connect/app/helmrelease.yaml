@@ -31,6 +31,7 @@ spec:
                   secretKeyRef:
                     name: onepassword-secret
                     key: 1password-credentials.json
+              OP_LOG_LEVEL: debug
             probes:
               liveness:
                 enabled: true
@@ -75,6 +76,7 @@ spec:
                   secretKeyRef:
                     name: onepassword-secret
                     key: 1password-credentials.json
+              OP_LOG_LEVEL: debug
             probes:
               liveness:
                 enabled: true

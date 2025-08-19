@@ -5,52 +5,12 @@ kind: HelmRelease
 metadata:
   name: mosquitto
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: app-template
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+    namespace: flux-system
+  interval: 30m
   values:
-    controllers:
-      mosquitto:
-        containers:
-          app:
-            image:
-              repository: public.ecr.aws/docker/library/eclipse-mosquitto
-              tag: 2.0.22
-            env:
-              TZ: Pacific/Auckland
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 100Mi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        type: LoadBalancer
-        annotations:
-          external-dns.alpha.kubernetes.io/hostname: mosquitto.rupamarpan.com
-          lbipam.cilium.io/ips: 192.168.50.12
-        ports:
-          http:
-            port: 1883
     configMaps:
       config:
         data:
@@ -62,14 +22,52 @@ spec:
             per_listener_settings false
             persistence true
             persistence_location /config
+    controllers:
+      mosquitto:
+        pod:
+          securityContext:
+            runAsUser: 2000
+            runAsGroup: 2000
+            runAsNonRoot: true
+            fsGroup: 2000
+        containers:
+          app:
+            image:
+              repository: public.ecr.aws/docker/library/eclipse-mosquitto
+              tag: 2.0.22
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              limits:
+                memory: 256Mi
+              requests:
+                cpu: 10m
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}-cache"
       config-file:
         type: configMap
-        name: mosquitto
+        identifier: config
         advancedMounts:
           mosquitto:
             app:
               - path: /mosquitto/config/mosquitto.conf
                 subPath: mosquitto.conf
+    service:
+      mosquitto:
+        type: LoadBalancer
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "mqtt.rupamarpan.com."
+          lbipam.cilium.io/ips: 192.168.50.223
+        ports:
+          mqtt:
+            port: 1883

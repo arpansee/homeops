@@ -46,7 +46,7 @@ spec:
       app:
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: mosquitto.turbo.ac
+          external-dns.alpha.kubernetes.io/hostname: mosquitto.rupamarpan.com
           lbipam.cilium.io/ips: 192.168.50.12
         ports:
           http:

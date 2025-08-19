@@ -42,10 +42,6 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-    volumeMounts:
-      - mountPath: /mosquitto/config/mosquitto.conf
-        name: config
-        subPath: mosquitto.conf
     service:
       app:
         type: LoadBalancer
@@ -55,10 +51,6 @@ spec:
         ports:
           http:
             port: 1883
-    volumes:
-      - name: config
-        configMap:
-          name: mosquitto-config
     configMaps:
       config:
         data:
@@ -70,3 +62,14 @@ spec:
             per_listener_settings false
             persistence true
             persistence_location /config
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}-cache"
+      config-file:
+        type: configMap
+        name: mosquitto
+        advancedMounts:
+          mosquitto:
+            app:
+              - path: /mosquitto/config/mosquitto.conf
+                subPath: mosquitto.conf

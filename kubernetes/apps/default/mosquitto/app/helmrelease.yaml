@@ -42,6 +42,10 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+    volumeMounts:
+      - mountPath: /mosquitto/config/mosquitto.conf
+        name: config
+        subPath: mosquitto.conf
     service:
       app:
         type: LoadBalancer
@@ -51,6 +55,10 @@ spec:
         ports:
           http:
             port: 1883
+    volumes:
+      - name: config
+        configMap:
+          name: mosquitto-config
     configMaps:
       config:
         data:
